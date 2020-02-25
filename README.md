@@ -7,12 +7,18 @@ Using this script will create one background process that will monitor this metr
 
 ## how to use it
 simple:
-in your submit script add these lines before:
+in your `submit.sh` script add these lines before:
 ```
 ...
+
 TENSORBOARDNAME="experiment1"
 DEVICES="1,2"
 python monitor.py ${TENSORBOARDNAME} ${DEVICES} & 
 
-python your_main_code.py ${TENSORBOARDNAME} .... 
+python your_main_code.py ${TENSORBOARDNAME}
+
+.... 
 ```
+the script automatically kills itself after around 2h, which should be enough to understand if you need more CPU workers etc.
+
+![screenshot](screenshot.png)
