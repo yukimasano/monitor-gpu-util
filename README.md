@@ -1,6 +1,10 @@
 # monitor-gpu-util
 script for monitoring gpu-utilization 
 
+## requirements
+* [GPUtil](https://github.com/anderskm/gputil) -> `pip install GPUtil`
+* tensorboardX 
+
 ## why
 I couldn't figure out a way to monitor the gpu utilization (in terms of %) while having a job running via slurm.
 Using this script will create one background process that will monitor this metric and log it to your specified tensorboard directory.
