@@ -15,11 +15,16 @@ in your `submit.sh` script add these lines before:
 ```
 ...
 
+
 TENSORBOARDNAME="experiment1"
 DEVICES="1,2"
-python monitor.py ${TENSORBOARDNAME} ${DEVICES} & 
 
-python your_main_code.py ${TENSORBOARDNAME}
+set -e # will allow the monitor to be killed if main code fails, instead of exiting the .sh script
+
+python monitor.py ${TENSORBOARDNAME} ${DEVICES} & 
+MONITOR_PID=$!
+
+python your_main_code.py ${TENSORBOARDNAME} || kill ${MONITOR_PID}
 
 .... 
 ```
